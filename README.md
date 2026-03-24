@@ -1,39 +1,25 @@
 # Kindle Notes to MD
 
-Convert an HTML file of book notes exported from an Amazon Kindle to a Markdown document.
-
-The output format is particularly suitable for copy-pasting into
-[Roam Research](https://roamresearch.com):
-
-![Screenshot](screenshot.png)
+Convert an HTML file of book notes exported from an Amazon Kindle to a Markdown document. The output is particularly suitable for [Obsidian](https://obsidian.md/).
 
 
-# Quickstart
+## Quickstart
 
-Install python packages:
+Install dependencies (requires [uv](https://docs.astral.sh/uv/)):
 
-    pip install -r requirements.txt
+    uv sync
 
 Convert the example notes:
 
-    kindle_notes_to_md.py example_notebook.html
+    uv run kindle_notes_to_md.py example_notebook.html
 
 Optional arguments:
 
-    -nl, --no-location    Do not include the source location of each note/highlight
     -c, --clipboard       Export .md directly to the clipboard instead of file
     -y, --override        Override .md file if one already exists
     -o OUTPUT, --output   A file to which save the Markdown document
 
 You can then open `example_notebook.md` in your favorite text editor.
-
-You can import that markdown file into [Roam Research](https://roamresearch.com),
-and you'll get a nicely organized note as shown in the screenshot above.
-Copy-pasting into Roam no longer works.
-
-Roam seems to be in decline; you may wish to explore alternatives,
-such as [Obsidian](https://obsidian.md/).
-
 
 
 ## Copying the output directly to the clipboard
@@ -47,6 +33,14 @@ sudo apt-get install xclip
 There are some known issues with this working on Windows Subsystem for Linux (WSL) under Windows 11 which are yet-to-be-investigated.
 
 
-# How to get your notes in HTML format
+## How to get your notes in HTML format
 
 I generally read and take notes on my Kindle e-ink reader. When I finish a book, I open the same book on the Kindle app on my phone, go to "My Notebook" for the book (the icon looks like a page with lines), then Export Notebook. This saves the HTML file you can convert.
+
+
+## Changes in this fork
+
+- Migrated from pip/requirements.txt to [uv](https://docs.astral.sh/uv/) with `pyproject.toml`
+- Replaced `eglogging` with `loguru`
+- Simplified note heading parsing with a single regex instead of brittle string splitting
+- PEP 8 class naming (`ChapterNotes`, `KindleNotes`)
