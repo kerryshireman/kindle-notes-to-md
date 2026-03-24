@@ -1,0 +1,16 @@
+[project]
+name = "kindle-notes-to-md"
+version = "0.1.0"
+description = "Translate Kindle notes to Markdown for Obsidian"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "beautifulsoup4==4.14.3",
+    "loguru>=0.7.3",
+    "pyperclip==1.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.11.0",
+]
